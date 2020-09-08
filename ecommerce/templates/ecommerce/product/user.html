@@ -1,0 +1,48 @@
+{% extends "ecommerce/base.html" %}
+
+{% block content %}
+	<div class="container products-view-user">
+		{% csrf_token %}
+		<form class = "post-list">
+			<input type = "hidden" value = "" />
+		</form>
+		
+		<div class="form-inline float-left">
+			<label> الصفحة:</label>
+			<select class="form-control ml-sm-2 post_max">
+				<option value="5">5</option>
+				<option value="10" selected>10</option>
+				<option value="15">15</option>
+			</select>
+		
+			<label class="ml-sm-3 mt-3 mt-xl-0">البحث:</label>
+			<input type="text" class="form-control ml-sm-2 post_search_text" placeholder="Enter a keyword">
+			<input type = "submit" value = "Filter" class = "btn btn-primary mt-3 mt-xl-0 post_search_submit" />
+		</div>
+		
+		<a href="/ecommerce/user/product/create/" class="btn btn-primary mb-3 float-right">اضافة</a>
+		
+		<br class = "clear" />
+		
+		<div class = "wave-box-wrapper">
+			<div class = "wave-box"></div>
+			<div class = "table-responsive">
+				<table class = "table table-striped table-post-list">
+					<thead>
+						<tr>
+							<th>الصورة</th>
+							<th id = "name" class = "active"><a href = "#">الاسم</a></th>
+							<th id = "price"><a href = "#">السعر</a></th>
+							<th id = "status"><a href = "#">الحالة</a></th>
+							<th id = "date"><a href = "#">التاريخ</a></th>
+							<th id = "quantity"><a href = "#">الكمية</a></th>
+							<th>الحساب</th>
+						</tr>
+					</thead>
+					<tbody class = "pagination-container"></tbody>
+				</table>
+			</div>
+			<div class = "pagination-nav"></div>
+		</div>
+	</div>
+{% endblock %}

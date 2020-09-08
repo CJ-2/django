@@ -1,0 +1,16 @@
+{% extends "ecommerce/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>الدفع عند الاستلام</title>
+</head>
+<body>
+{% block content %}
+    <div class="container">
+        <h6> تم انشاء طلبك, رقم طلبك  {{order.id}}</h6>
+        <a href="{% url 'ecommerce:index' %}"> الرجوع الى المتجر </a>
+    </div>
+{% endblock %}
+</body>
+</html>S

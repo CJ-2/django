@@ -1,0 +1,108 @@
+{% extends "ecommerce/base.html" %}
+{% load i18n %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% load countries %}
+{% block content %}
+
+<style>
+     #paypal_method {
+        cursor: pointer;
+    }
+
+    #paypal_method:hover {
+        background-color: #F2F2F2;
+    }
+
+    .zoid-outlet {
+        width: 110px !important;
+        height: 48px !important;
+        opacity: 0;
+    }
+
+    .success-form {
+        background-color: #D4EDDA;
+        padding: 4px 10px 4px 10px;
+        border-radius: 4px;
+        width: 100%;
+        color: #4CAF50;
+        font-size: 30px;
+        margin-right: 20px;
+        display: none;
+    }
+
+</style>
+<div class="row" style="padding:20px;">
+   {% if cart_db_items %}
+    <div class="col-sm-10">
+        <div class="row" style="padding:20px;">
+            <div class="col-sm-10">
+                <p class="float-right success-form" id="paid-msg" align="center"><font><b>لقد تم الدفع بنجاح</font></b></p>
+            </div>
+            <div class="col-sm-2" style="padding: 0px;">
+                <input type="button" id="btn" class="btn btn-primary btn-lg float-right"
+                       value="{% trans 'pay now' %}"/>
+                <div id="paypal-button" class="float-right"
+                     style="margin-right: -110px; margin-top: 11px;"></div>
+            </div>
+        </div>
+    </div>
+        <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+        <!-- Load the client component. -->
+        <script src="https://js.braintreegateway.com/web/3.62.1/js/client.min.js"></script>
+        <!-- Load the PayPal Checkout component. -->
+        <script src="https://js.braintreegateway.com/web/3.62.1/js/paypal-checkout.min.js"></script>
+        <script>
+            paypal.Button.render({
+                braintree: braintree,
+                client: {
+                    production: "{{ paypal_key }}",
+                    sandbox: "{{ paypal_key }}",
+                },
+                env: 'sandbox', // Or 'product'
+                commit: true, // This will add the transaction amount to the PayPal button
+
+                payment: function (data, actions) {
+                    return actions.braintree.create({
+                        flow: 'checkout', // Required
+                        amount: "{{ cart_total }}", // Required
+                        currency: 'USD', // Required
+
+                    });
+                },
+
+                onAuthorize: function (payload) {
+                    // Submit `payload.nonce` to your server.
+                    $(".spinner-box").show();
+                    $.ajax({
+                        headers: {"X-CSRFToken": '{{csrf_token}}'},
+                        url: '{% url "ecommerce:payment-paypal" %}',
+                        type: 'POST',
+                        data: {
+                            payment_method_nonce: payload.nonce,
+                            amount: "{{ cart_total }}",
+                            description: "PayPal result file",
+                        },
+                        success: function (data) {
+                            $(".spinner-box").hide();
+                            if (data['statusCode'] == 1) {
+                                $("#paid-msg").css("display", "block");
+                                $("#btn").hide()
+                            } else {
+                                alert("Processing was failed.");
+                            }
+                        },
+                        error: function (data) {
+                            false;
+                        }
+                    });
+                },
+            }, '#paypal-button');
+        </script>
+         {% else %}
+            <div class="alert alert-danger alert-dismissable">البطاقة فارغه</div>
+        {% endif %}
+
+    </div>
+
+    {% endblock %}

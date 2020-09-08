@@ -1,0 +1,60 @@
+{% extends "ecommerce/base.html" %}
+{% load i18n %}
+{% block content %}
+	<div class="container-fluid">
+		{% csrf_token %}
+		<form class = "post-list">
+			<input type = "hidden" value = "" />
+
+		<div class="row">
+			<div class="col-md-3">
+				<div class="card">
+					<div class="card-header">{% trans "Filter" %}</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label>البحث: </label>
+							<input type="text" name="keywords" class="form-control post_search_text"  placeholder="{% trans 'Enter a keyword' %}" value={{values.keywords}} >
+							<input type="text" name="price" class="form-control post_search_text" placeholder="{% trans 'Enter a  price' %}" value={{values.price}}>
+						</div>
+                        <input type = "submit" value = "{% trans 'Filter' %}" class = "btn btn-primary btn-block post_search_submit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+
+        <div class="py-5">
+		<div class="container">
+			<h2 class="text-center">افضل المنجات</h2>
+			<hr>
+			<div class="row">
+				{% for item in products %}
+					<div class='col-md-3 col-sm-6 mb-3'>
+						<div class='card'>
+							<div class='card-body p-0'>
+								<a href="{% url 'ecommerce:single_product' item.id %}">
+									<img src='/ar/ecommerce/{{ item.featured_image }}' width='253' height="300" class='img-responsive'>
+								</a>
+								<div class='list-group list-group-flush'>
+									<div class='list-group-item border-top-0 py-2'>
+										<i class='fa fa-shopping-cart fa-2x pr-3 pt-3 float-left'></i>
+										<p class='list-group-item-text mb-0'>{% trans "Price" %}</p>
+										<h4 class='list-group-item-heading'>{{ currency }} {{ item.price }}</h4>
+									</div>
+									<div class='list-group-item py-2'>
+										<i class='fa fa-cubes fa-2x pr-3 pt-3 float-left'></i>
+										<p class='list-group-item-text mb-0'>{% trans "On Stock" %}</p>
+										<h4 class='list-group-item-heading'>{{ item.quantity }}</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "ecommerce/base.html" %}
+{% load i18n %}
+{% block content %}
+	<div class="container-fluid">
+		{% csrf_token %}
+		<form class = "post-list">
+			<input type = "hidden" value = "" />
+		</form>
+		
+		<div class="row">
+			<div class="col-md-3">
+				<div class="card">
+					<div class="card-header">{% trans "Filter" %}</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label>البحث: </label>
+							<input type="text" class="form-control post_search_text" placeholder="{% trans 'Enter a keyword' %}" />
+						</div>
+						<div class="form-group">
+							<label>{% trans "Per Page" %}: </label>
+							<select class="form-control post_max">
+								<option value="4">4</option>
+								<option value="8" selected>8</option>
+								<option value="16">16</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>{% trans "Order By" %}: </label>
+							<select class="form-control post_name">
+								<option value="name">اسم المنتج</option>
+								<option value="price">السعر</option>
+								<option value="quantity">السلع المتوفرة</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>{% trans "Sorting" %}: </label>
+							<select class="form-control post_sort">
+								<option value="ASC">{% trans "Ascending" %}</option>
+								<option value="DESC">{% trans "Descending" %}</option>
+							</select>
+						</div>
+						<input type = "submit" value = "{% trans 'Filter' %}" class = "btn btn-primary btn-block post_search_submit" />
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-9">
+				{% if request.GET.cart %}
+					<div class="alert alert-success">
+						{% if request.GET.cart == '0' %}
+						{% trans "Item successfully removed from cart" %}
+						{% else %}
+							{% trans "Item successfully added to cart" %}
+						{% endif %}
+					</div>
+				{% endif %}
+				<div class="products-view-all">
+					<div class="pagination-container row"></div>
+					<div class="pagination-nav"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

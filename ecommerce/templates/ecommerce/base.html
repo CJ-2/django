@@ -1,0 +1,127 @@
+{% load static %}<!DOCTYPE html>
+{% load i18n %}
+<html lang="">
+<head>
+	<title>Infinity market</title>
+	
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'ecommerce/lib/imageviewer/imageviewer.css' %}">
+	<link rel="stylesheet" href="{% static 'ecommerce/lib/lobibox/lobibox.min.css' %}">
+	<link rel="stylesheet" href="{% static 'ecommerce/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/spinners.css' %}" >
+    <style type="text/css">
+        .spinner-box {
+          width: 100%;
+          height: 100%;
+          top: 0px;
+          position: fixed;
+          z-index: 99999;
+          background-color: rgba(0, 0, 0,0.3);
+        }
+    </style>
+</head>
+<body class="override">
+	<nav class="navbar navbar-expand-lg navbar-dark mb-3">
+		<a class="navbar-brand" href="/ecommerce/"><img src="https://i.ibb.co/vqJZwk1/png-4black-0.png" width="65px" height="65px" alt="1234"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<img src="https://img.icons8.com/ios/24/000000/menu.png">
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/ecommerce/search" style="color: rgb(0 0 0 / 63%);">المنتجات</a></li>
+			
+			</ul>
+			<ul class="navbar-nav">
+				{% if user.is_authenticated %}
+					<li class="nav-item"><a class="nav-link" href="/ecommerce/cart">Cart</a></li>
+					
+					
+				{% else %}
+				<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"style="color: rgb(0 0 0 / 63%);">تصنيف</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#"style="color: rgb(0 0 0 / 63%);">نساء</a>
+							<a class="dropdown-item" href="#"style="color: rgb(0 0 0 / 63%);">رجال</a>
+							<a class="dropdown-item" href="#"style="color: rgb(0 0 0 / 63%);">أطفال</a>
+							<a class="dropdown-item" href="#"style="color: rgb(0 0 0 / 63%);">الأجهزه</a>
+						</div>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/ecommerce/cart"><img src="https://img.icons8.com/pastel-glyph/64/000000/shopping-cart--v1.png" width="35px" height="35px"></a></li>
+					
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+	<div class="spinner-box" style="display:none;">
+		<svg class="circular" viewBox="25 25 50 50">
+		    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+		</svg>  
+	</div>
+	 {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">
+          {{ message|safe }}
+            <a href="#" class="close">x</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+	
+	{% block content %}{% endblock %}	
+	
+	<footer>
+		<div class="container">
+			<hr />
+			<div class="row">
+				<div class="col-lg-8 col-md-8">		
+					<p>Developed by: <a href="http://carlofontanos.com" target="_blank">عبد العزيز القحطاني</a></p>
+					<div class="personal-sm">
+						
+						<a href="#" target="_blank" title="instagram">
+							<i class="fab fa-instagram text-warning"> </i>&nbsp;
+						</a>
+						
+						<a href="#" target="_blank" title="Twitter">
+							<i class="fab fa-twitter text-warning"> </i>&nbsp;
+						</a>
+						
+						
+						
+						<a href="#" title="Contact Me">
+							<i class="fa fa-link text-warning"> </i>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<p>Copyright &copy <a href="#" target="_blank">www.infinitymarket.com</a> 2020</p>
+					<p>.كل الحقوق محفوظة</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
+	<script type="text/javascript">
+		var module_path = '/ecommerce/'
+	</script>
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	<script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+	<script src="{% static 'ecommerce/lib/imageviewer/imageviewer.min.js' %}"></script>
+	<script src="{% static 'ecommerce/lib/lobibox/lobibox.min.js' %}"></script>
+	<script src="{% static 'ecommerce/js/jquery.form.js' %}"></script>
+	<script src="{% static 'ecommerce/js/global.js' %}"></script>
+	<script src="{% static 'ecommerce/js/app.js' %}"></script>
+</body>
+</html>

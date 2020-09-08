@@ -1,0 +1,88 @@
+{% extends "ecommerce/base.html" %}
+{% load humanize %}
+
+{% block content %}
+	<div class="container">
+		<h2>السلة</h2>
+		<br />
+		
+		{% if request.GET.cart %}
+			<div class="alert alert-success alert-dismissable">
+				{% if request.GET.cart == '0' %}
+				تم الحذف من السلة
+				{% else %}
+				تم تحديث المنتج
+				{% endif %}
+			</div>
+		{% endif %}
+		
+		{% if cart_db_items %}
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tr>
+						<th>المنتج</th>
+						<th>الكمية</th>
+						<th>المجموع</th>
+						<th>تاريخ الاضافة</th>
+						<th>#</th>
+					</tr>
+					
+					{% for item in cart_db_items %}
+						{% with cart_session_items|get_cart_item:item.id as cart %}  
+						<tr>
+							<td>
+								<a href="{% url 'ecommerce:single_product' item.id %}">
+									<img src="/ar/ecommerce/{{ item.featured_image }}" class="img-responsive img-thumbnail float-left mr-2" width="50">
+									{{ item.name }}
+								</a>
+							</td>
+							<td>
+								<form method="post" action="{% url 'ecommerce:cart' %}" class="form-inline">
+									<input type="hidden" name="redirect" value="{% url 'ecommerce:cart' %}?cart=1" />
+									<input type="hidden" name="action" value="edit" />
+									<input type="hidden" name="item_id" value="{{ item.id }}" />
+									<input type="number" name="quantity" style="width: 70px;" class="form-control" min="1" max="{{ item.quantity }}" value="{{ cart.quantity }}" />
+									<button type="submit" class="btn btn-link"><span class="glyphicon glyphicon-floppy-save"></span> تحديث</button>
+								</form>
+							</td>
+							<td>{{ currency }} {% multiply cart.quantity item.price %}</td>
+							<td>{{ cart.date_added }}</td>
+							<td>
+								<form method="post" action="{% url 'ecommerce:cart' %}">
+									<input type="hidden" name="redirect" value="{% url 'ecommerce:cart' %}?cart=0" />
+									<input type="hidden" name="action" value="delete" />
+									<input type="hidden" name="item_id" value="{{ item.id }}" />
+									<button type="submit" class="btn btn-link"><span class="glyphicon glyphicon-trash"></span> حذف</button>
+								</form>
+							</td>
+						</tr>
+						{% endwith %}
+					{% endfor %}
+				</table>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-6"></div>
+				<div class="col-sm-6">
+					<h3>مجموع السلة</h3>
+					<table class="table table-bordered">
+						<tr>
+							<th>المجموع الفرعي</th>
+							<td>{{ currency }} {{ cart_total }}</td>
+						</tr>
+						<tr>
+							<th>المجموع</th>
+							<td>{{ currency }} {{ cart_total }}</td>
+						</tr>
+					</table>
+
+					<a href="{% url 'ecommerce:checkout-cash-on-delivery' %}" class="btn btn-block btn-lg btn-primary">الدفع عند الاستلام</a>
+					<a href="{% url 'ecommerce:paypal-checkout' %}" class="btn btn-block btn-lg btn-primary">  Paypalالدفع عن طريق </a>
+
+				</div>
+			</div>
+		{% else %}
+			<div class="alert alert-danger alert-dismissable">السلة فارغة</div>
+		{% endif %}
+	</div>
+{% endblock %}

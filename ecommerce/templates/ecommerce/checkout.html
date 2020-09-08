@@ -1,0 +1,203 @@
+{% extends "ecommerce/base.html" %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% load countries %}
+{% block content %}
+<style>
+    #paypal_method {
+        cursor: pointer;
+    }
+
+    #paypal_method:hover {
+        background-color: #F2F2F2;
+    }
+
+    .zoid-outlet {
+        width: 110px !important;
+        height: 48px !important;
+        opacity: 0;
+    }
+
+    .success-form {
+        background-color: #D4EDDA;
+        padding: 4px 10px 4px 10px;
+        border-radius: 4px;
+        width: 100%;
+        color: #4CAF50;
+        font-size: 30px;
+        margin-right: 20px;
+        display: none;
+    }
+</style>
+
+<div class="container">
+    <h2>تاكيد</h2>
+    <br/>
+
+    {% if cart_db_items %}
+        <div class="col-lg-12">
+            <h4 class="upper">Billing & Shipping Address</h4>
+        </div>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="col-lg-8 ">
+
+                {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field }}
+                {% endfor %}
+
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for error in form.non_field_errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% for field in form.visible_fields %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+
+                    {% if form.is_bound %}
+                    {% if field.errors %}
+                    {% render_field field class="form-control is-invalid" %}
+                    {% for error in field.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    {% render_field field class="form-control is-valid" %}
+                    {% endif %}
+                    {% else %}
+                    {% render_field field class="form-control" %}
+                    {% endif %}
+
+                    {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+
+        <div class="seperator"><i class="fa fa-credit-card"></i></div>
+
+
+        <div class="col-sm-12 my-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>طلبك</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>المنتج</th>
+                                <th>المجموع</th>
+                            </tr>
+                            {% for item in cart_db_items %}
+                            {% with cart_session_items|get_cart_item:item.id as cart %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'ecommerce:single_product' item.id %}">
+                                        <img src="/ecommerce/{{ item.featured_image }}"
+                                             class="img-responsive img-thumbnail mr-2 float-left" width="50">
+                                        {{ item.name }}</a>&nbsp; x {{ cart.quantity }}
+                                    </a>
+                                </td>
+                                <td>{{ currency }} {% multiply cart.quantity item.price %}</td>
+                            </tr>
+                            {% endwith %}
+                            {% endfor %}
+
+                            <tr>
+                                <th>المجموع الفرعي</th>
+                                <td><strong>{{ currency }} {{ cart_total|intcomma }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th>المجموع</th>
+                                <td><strong>{{ currency }} {{ cart_total|intcomma }}</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <br/>
+                    <input type="checkbox" name="terms_and_conditions"/>&nbsp; I’ve read and accept the <a href="#">terms
+                    & conditions</a>
+                    <div class="row" style="padding:20px;">
+                        <div class="col-sm-10">
+                            <p class="float-right success-form" id="paid-msg" align="center"><font><b>تم الدفع بنجاح</font></b></p>
+                        </div>
+                        <div class="col-sm-2" style="padding: 0px;">
+                            <input type="button" class="btn btn-primary btn-lg float-right"
+                                   value="pay now"/>
+                            <div id="paypal-button" class="float-right"
+                                 style="margin-right: -110px; margin-top: 11px;"></div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning mt-3" href="#"><span>حفظ التغيرات
+                </span></button>
+                </div>
+                <br/>
+
+
+            </div>
+
+
+            <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+            <!-- Load the client component. -->
+            <script src="https://js.braintreegateway.com/web/3.62.1/js/client.min.js"></script>
+            <!-- Load the PayPal Checkout component. -->
+            <script src="https://js.braintreegateway.com/web/3.62.1/js/paypal-checkout.min.js"></script>
+            <script>
+                paypal.Button.render({
+                    braintree: braintree,
+                    client: {
+                        production: "{{ paypal_key }}",
+                        sandbox: "{{ paypal_key }}",
+                    },
+                    env: 'sandbox', // Or 'product'
+                    commit: true, // This will add the transaction amount to the PayPal button
+
+                    payment: function (data, actions) {
+                        return actions.braintree.create({
+                            flow: 'checkout', // Required
+                            amount: "{{ cart_total|intcomma }}", // Required
+                            currency: 'USD', // Required
+
+                        });
+                    },
+
+                    onAuthorize: function (payload) {
+                        // Submit `payload.nonce` to your server.
+                        $(".spinner-box").show();
+                        $.ajax({
+                            headers: {"X-CSRFToken": '{{csrf_token}}'},
+                            url: '{% url "ecommerce:payment-paypal" %}',
+                            type: 'POST',
+                            data: {
+                                payment_method_nonce: payload.nonce,
+                                amount: "{{ cart_total|intcomma }}",
+                                description: "PayPal result file",
+                            },
+                            success: function (data) {
+                                $(".spinner-box").hide();
+                                if (data['statusCode'] == 1) {
+                                    $("#paid-msg").css("display", "block");
+                                } else {
+                                    alert("Processing was failed.");
+                                }
+                            },
+                            error: function (data) {
+                                false;
+                            }
+                        });
+                    },
+                }, '#paypal-button');
+            </script>
+            {% else %}
+            <div class="alert alert-danger alert-dismissable">السلة فارغة</div>
+            {% endif %}
+        </div>
+        {% endblock %}

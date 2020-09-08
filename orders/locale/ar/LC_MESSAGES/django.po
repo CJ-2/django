@@ -1,0 +1,104 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-20 11:14-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\orders\models.py:9
+msgid "Cash On Delivery"
+msgstr "الدفع عند الاستلام"
+
+#: .\orders\models.py:10
+msgid "paypal"
+msgstr ""
+
+#: .\orders\models.py:13
+msgid "First Name"
+msgstr "الاسم الاول"
+
+#: .\orders\models.py:14
+msgid "Last Name"
+msgstr "الكنية"
+
+#: .\orders\models.py:15
+msgid "Street Address"
+msgstr "عنوان الشارع"
+
+#: .\orders\models.py:16
+msgid "Country"
+msgstr "بلد"
+
+#: .\orders\models.py:17
+msgid "City"
+msgstr "مدينة"
+
+#: .\orders\models.py:18
+msgid "State"
+msgstr "حالة"
+
+#: .\orders\models.py:19
+msgid "Postal Code"
+msgstr "الكود البريدى"
+
+#: .\orders\models.py:21
+msgid "Phone"
+msgstr "هاتف"
+
+#: .\orders\models.py:22
+msgid "Additional Information"
+msgstr "معلومة اضافية"
+
+#: .\orders\models.py:23
+msgid "created"
+msgstr "خلقت"
+
+#: .\orders\models.py:24
+msgid "updated"
+msgstr "محدث"
+
+#: .\orders\models.py:25
+msgid "Payment Method"
+msgstr "طريقة الدفع او السداد"
+
+#: .\orders\models.py:27
+msgid "Paid"
+msgstr "دفع"
+
+#: .\orders\models.py:28
+msgid "Braintree Id"
+msgstr "معرف Braintree"
+
+#: .\orders\models.py:32
+msgid "Order"
+msgstr "طلب"
+
+#: .\orders\models.py:33
+msgid "Orders"
+msgstr "الطلب"
+
+#: .\orders\models.py:48
+msgid "Price"
+msgstr "السعر"
+
+#: .\orders\models.py:49
+msgid "Quantity"
+msgstr "كمية"
+
+#: .\orders\models.py:55
+msgid "Order Items"
+msgstr "طلب بضاعة"
