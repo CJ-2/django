@@ -20,7 +20,7 @@ urlpatterns = [
                   url(r'^checkout/paypal$', views.checkout_paypal, name='paypal-checkout'),
                   url(r'^checkout/payment/process/$', views.proceed_to_pay, name='proceed-to-pay'),
                   url(r'^search/$', views.product_search, name='search'),
-
+                  url(r'^ALL/$', views.ALL, name='ALL'),
                   url(r'^user/', include([
                       url(r'^login/$', views.user_login, name='user_login'),
                       url(r'^register/$', views.user_register, name='user_register'),

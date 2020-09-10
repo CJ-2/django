@@ -156,7 +156,7 @@ video {
 
 #resize {
       z-index: 2;
-      top: 0px;
+      top: 10px;
       position: fixed;
       background: #0f0f0f;
       width: 100%;

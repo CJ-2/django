@@ -106,6 +106,9 @@ def product_search(request):
 def about(request):
     return render(request, Helpers.get_url('about.html'))
 
+def ALL(request):
+    return render(request, Helpers.get_url('ALL.html'))
+
 
 def contact(request):
     return render(request, Helpers.get_url('contact.html'))

@@ -1,0 +1,326 @@
+{% load static %}
+{% load i18n %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>INIFINTYMARKET</title>
+
+      <!-- stylesheet -->
+      <link rel="stylesheet" href="{% static 'ecommerce/css/style1.css' %}">
+
+      <!-- google fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Darker+Grotesque:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+      <!-- bootstrap -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+      <!-- icons -->
+      <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+      <!-- for on scroll animations -->
+      <link rel="stylesheet" href="https://cdn.rawgit.com/daneden/animate.css/v3.1.0/animate.min.css">
+      <script src="https://cdn.rawgit.com/matthieua/WOW/1.0.1/dist/wow.min.js"></script>
+<body>
+      
+      <a name="home"></a>
+      <div class="wrapper">
+
+            <!--------------- hero section starts here --------------->
+              <div class="video-container">
+                  <video playsinline autoplay muted loop id="bgvid">
+                        <source src="{% static 'ecommerce/img/videobg1.mp4' %}">
+                  </video>
+            </div>
+
+            <div class="header">
+                  <h1>المنتجات</h1>
+            </div>
+
+            
+            <!--------------- hero section ends here --------------->
+
+            <!--------------- navbar starts here --------------->
+
+            <nav class="nav">
+                  <span id="brand">
+                        <a href="/ecommerce/"><img src="https://i.ibb.co/48g23d8/1234.png" width="75px" height="75px" alt="1234"></a>
+                  </span>
+
+                  <ul id="menu">
+                        <li><a href="/ecommerce/ALL">المنتجات</a></li>
+                        <li><a href="#">نساء</a></li>
+                        <li><a href="#s">رجال</a></li>
+                        <li><a href="#">أطفال</a></li>
+                        <li><a href="#">أجهزه</a></li>
+					    <li><a href="#contact">تواصل</a></li>
+					    <li><a    href="/ecommerce/cart" style="font-size: 20px;
+      color: #d3ae87; t"><ion-icon ios="ios-cart" md="md-cart"></ion-icon></a></li>
+
+                  </ul>
+
+                  <div id="toggle">
+                        <div class="span">menu</div>
+                  </div>
+
+            </nav>
+
+            <div id="resize">
+                  <div class="close-btn">close</div>
+
+                  <ul id="menu">
+                        <li><a href="/ecommerce/ALL">المنتجات</a></li>
+                        <li><a href="#">نساء </a></li>
+                        <li><a href="#">رجال</a></li>
+                        <li><a href="#">أطفال</a></li>
+					     <li><a href="#">أجهزه</a></li>
+					   <li><a href="/ecommerce/cart" >السله</a></li>
+					 
+                  </ul>
+            </div>
+
+            <!--------------- navbar ends here --------------->
+
+
+            <div class="content">
+
+			<a name="team"></a>
+
+            <section class="team">
+
+                  <div class="container-fluid">
+
+                        <div class="row">
+                              <div class="col-md-2"></div>
+                              <div class="col-md-2 section-index wow fadeInUp" data-wow-delay="0.3s">01</div>
+                              <div class="col-md-8 section-heading wow fadeInUp" data-wow-delay="0.4s">المنتجات</div>
+                        </div>
+
+                        <div class="row members">
+
+                              <div class="col-md-4"></div>
+
+                              <div class="col-md-3 wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="team-member">
+                                          <div class="team-img team-one"><img src="https://images-na.ssl-images-amazon.com/images/I/41yUlSLQfTL._BO1,204,203,200_.jpg" style="width: 350px"></div>
+                                    </div>
+                                    <div class="team-title">
+                                          <h5>كتاب</h5>
+                                          <span>18$&ريال70</span>
+                                    </div>
+                              </div>
+
+                           
+							 <div class="col-md-3 wow fadeInUp" data-wow-delay="0.6s">
+                                          <div class="team-member">
+                                                <div class="team-img team-two">
+													<img src="https://i.ibb.co/rZvk5Gy/IMG-4973.jpg" style="width: 350px;">
+											  </div>
+                                          </div>
+                                          <div class="team-title">
+                                                <h5>تي شيرت</h5>
+											    <span>16$&ريال60</span>
+											    <span>‏إضافة إلى السلة</span>
+                                               
+                                          </div>
+                                    </div>
+
+
+
+
+                        </div>
+					  <div class="row members">
+
+                              <div class="col-md-4"></div>
+
+                              <div class="col-md-3 wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="team-member">
+                                          <div class="team-img team-one"><img src="https://images-na.ssl-images-amazon.com/images/I/41yUlSLQfTL._BO1,204,203,200_.jpg" style="width: 350px"></div>
+                                    </div>
+                                    <div class="team-title">
+                                          <h5>كتاب</h5>
+                                          <span>18$&ريال70</span>
+                                    </div>
+                              </div>
+
+                           
+							 <div class="col-md-3 wow fadeInUp" data-wow-delay="0.6s">
+                                          <div class="team-member">
+                                                <div class="team-img team-two">
+													<img src="https://i.ibb.co/rZvk5Gy/IMG-4973.jpg" style="width: 350px;">
+											  </div>
+                                          </div>
+                                          <div class="team-title">
+                                                <h5>تي شيرت</h5>
+											    <span>16$&ريال60</span>
+											    <span>‏إضافة إلى السلة</span>
+                                               
+                                          </div>
+                                    </div>
+
+
+
+
+                        </div>
+
+                  </div>
+
+            </section>
+            <!--------------- about section starts here --------------->
+
+           
+            <!--------------- about section ends here --------------->
+
+            <!--------------- services section starts here --------------->
+
+            <a name="services"></a>
+
+         
+            <!--------------- services section ends here --------------->
+
+            <!--------------- team section starts here --------------->
+
+            
+            
+            <!--------------- team section ends here --------------->
+
+            <!--------------- newsletter section starts here --------------->
+
+           
+
+            <!--------------- newsletter section ends here --------------->
+
+            <!--------------- contact section starts here --------------->
+
+            <a name="contact"></a>
+
+            
+            <!--------------- footer starts here --------------->
+
+            <div class="footer">
+
+                  <div class="container">
+
+                        <div class="info">
+
+                              <div class="row">
+                                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.3s" id="address">
+                                          <p>السعودية</p>
+                                          <h4>الرياض</h4>
+                                          <h4>الآندلس</h4>
+                                          <h4>٠٥٠٩٠٩٩٣٧٢</h4>
+
+                                          <br><br>
+                                    </div>
+
+                                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.4s" id="media">
+                                          <ul>
+                                                <li><ion-icon name="logo-facebook"></ion-icon></li>
+
+                                                <li><ion-icon name="logo-instagram"></ion-icon></li>
+
+                                                <li><ion-icon name="logo-twitter"></ion-icon></li>
+
+                                                <li><ion-icon name="logo-youtube"></ion-icon></li>
+                                          </ul>
+
+                                          <br><br>
+                                    </div>
+
+                                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.5s" id="mail">
+                                          <p>Say Hello</p>
+                                          <h4>contact@infinitymarket.store</h4>
+
+                                          <br><br>
+                                    </div>
+                              </div>
+
+                        </div>
+
+                  </div>
+
+            </div>
+
+            <!--------------- footer ends here --------------->
+
+            </div>
+
+      </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+
+// navigation starts here
+$("#toggle").click(function() {
+            $(this).toggleClass('on');
+            $("#resize").toggleClass("active");
+      });
+      $("#resize ul li a").click(function() {
+            $(this).toggleClass('on');
+            $("#resize").toggleClass("active");
+      });
+      $(".close-btn").click(function() {
+            $(this).toggleClass('on');
+            $("#resize").toggleClass("active");
+      });
+
+$(function () {
+  $(document).scroll(function () {
+    var $nav = $(".nav");
+    $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+  });
+});
+
+new WOW().init();
+
+// Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
+
+
+</script>
+	<!-- start Gist JS code-->
+<script>
+    (function(d,h,w){var gist=w.gist=w.gist||[];gist.methods=['trackPageView','identify','track','setAppId'];gist.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);gist.push(e);return gist;}};for(var i=0;i<gist.methods.length;i++){var c=gist.methods[i];gist[c]=gist.factory(c)}s=d.createElement('script'),s.src="https://widget.getgist.com",s.async=!0,e=d.getElementsByTagName(h)[0],e.appendChild(s),s.addEventListener('load',function(e){},!1),gist.setAppId("v4wsxcin"),gist.trackPageView()})(document,'head',window);
+</script>
+<!-- end Gist JS code-->
+</body>
+</html>
+{% endblock %}
