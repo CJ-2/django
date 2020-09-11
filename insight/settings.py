@@ -17,7 +17,7 @@ SECRET_KEY = '*6st(_hgwa&z#$fssuk@qm0#93$^p135@%kffc00-tng(7jq%&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.infinitymarket.store' '127.0.0.1']
+ALLOWED_HOSTS = ['infinitymarket.store' '127.0.0.1']
 
 # Application definition
 
