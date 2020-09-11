@@ -108,7 +108,14 @@ def about(request):
 
 def ALL(request):
     return render(request, Helpers.get_url('ALL.html'))
-
+def kids(request):
+    return render(request, Helpers.get_url('kids.html'))
+def Devices(request):
+    return render(request, Helpers.get_url('Devices.html'))
+def man(request):
+    return render(request, Helpers.get_url('man.html'))
+def women(request):
+    return render(request, Helpers.get_url('women.html'))
 
 def contact(request):
     return render(request, Helpers.get_url('contact.html'))

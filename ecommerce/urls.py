@@ -21,6 +21,10 @@ urlpatterns = [
                   url(r'^checkout/payment/process/$', views.proceed_to_pay, name='proceed-to-pay'),
                   url(r'^search/$', views.product_search, name='search'),
                   url(r'^ALL/$', views.ALL, name='ALL'),
+	              url(r'^man/$', views.man, name='man'),
+                  url(r'^women/$', views.women, name='women'),
+	              url(r'^kids/$', views.kids, name='kids'),
+	              url(r'^Devices/$', views.Devices, name='Devices'),
                   url(r'^user/', include([
                       url(r'^login/$', views.user_login, name='user_login'),
                       url(r'^register/$', views.user_register, name='user_register'),
