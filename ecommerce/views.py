@@ -110,6 +110,8 @@ def ALL(request):
     return render(request, Helpers.get_url('ALL.html'))
 def kids(request):
     return render(request, Helpers.get_url('kids.html'))
+def termsandconditions(request):
+    return render(request, Helpers.get_url('Termsandconditions.html'))
 def Devices(request):
     return render(request, Helpers.get_url('Devices.html'))
 def man(request):

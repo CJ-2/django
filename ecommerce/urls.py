@@ -25,6 +25,7 @@ urlpatterns = [
                   url(r'^women/$', views.women, name='women'),
 	              url(r'^kids/$', views.kids, name='kids'),
 	              url(r'^Devices/$', views.Devices, name='Devices'),
+	               url(r'^termsandconditions/$', views.termsandconditions, name='termsandconditions'),
                   url(r'^user/', include([
                       url(r'^login/$', views.user_login, name='user_login'),
                       url(r'^register/$', views.user_register, name='user_register'),
